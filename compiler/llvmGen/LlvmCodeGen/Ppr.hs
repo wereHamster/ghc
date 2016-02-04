@@ -71,6 +71,9 @@ moduleLayout = sdocWithPlatform $ \platform ->
     Platform { platformArch = ArchARM64, platformOS = OSLinux } ->
         text "target datalayout = \"e-m:e-i64:64-i128:128-n32:64-S128\""
         $+$ text "target triple = \"aarch64-unknown-linux-gnu\""
+    Platform { platformArch = ArchMipseb, platformOS = OSLinux } ->
+        text "target datalayout = \"E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64\""
+        $+$ text "target triple = \"mips-linux-gnu\""
     _ ->
         if platformIsCrossCompiling platform
             then panic "LlvmCodeGen.Ppr: Cross compiling without valid target info."
