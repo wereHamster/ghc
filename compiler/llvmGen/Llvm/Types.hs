@@ -861,7 +861,7 @@ ppFloat = ppDouble . widenFp
 -- | Reverse or leave byte data alone to fix endianness on this target.
 fixEndian :: [a] -> [a]
 #ifdef WORDS_BIGENDIAN
-fixEndian = id
+fixEndian = reverse
 #else
 fixEndian = reverse
 #endif
