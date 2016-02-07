@@ -63,6 +63,9 @@ $(libffi_STAMP_CONFIGURE): $(TOUCH_DEP)
 # will use cygwin symbolic links which cannot be read by mingw gcc.
 	chmod +x libffi/ln
 
+	# https://github.com/atgreen/libffi/issues/187
+	( cd libffi/build && "$(PATCH_CMD)" -p1 < ../mips-softfloat.patch; )
+
 	# We need to use -MMD rather than -MD, as otherwise we get paths
 	# like c:/... in the dependency files on Windows, and the extra
 	# colons break make
@@ -128,4 +131,3 @@ $(eval $(call clean-target,libffi,, \
     libffi/build $(wildcard libffi/stamp.ffi.*) libffi/dist-install))
 
 endif
-

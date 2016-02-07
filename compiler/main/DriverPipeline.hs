@@ -1472,7 +1472,7 @@ runPhase (RealPhase LlvmLlc) input_fn dflags
         abiOpts = case platformArch (targetPlatform dflags) of
                     ArchARM _ _ HARD -> ["-float-abi=hard"]
                     ArchARM _ _ _    -> []
-                    _                -> []
+                    _                -> ["-float-abi=soft","-mattr=+soft-float"]
 
         sseOpts | isSse4_2Enabled dflags = ["-mattr=+sse42"]
                 | isSse2Enabled dflags   = ["-mattr=+sse2"]
